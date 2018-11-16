@@ -1,0 +1,43 @@
+;       NOMBRE MACRO: OPA
+;       DESCRIPCION: OBTIENE 5 PARAMETROS, A, B Y C LOS CUALES SE SUMAN A CON B Y SE RESTA C,
+;       Y EL RESULTADO SE GUARDA POR SEPARADO EN DECIMALES Y UNIDADES, EN OPADEC Y OPAUNI RESPECTIVAMENTE.
+        OPA MACRO A,B,C,OPADEC, OPAUNI
+                MOV AL,A
+                ADD AL,B
+                SUB AL,C
+                AAM
+                ADD AX,3030h
+                MOV OPADEC,AH
+                MOV OPAUNI,AL
+        ENDM
+
+;       NOMBRE MACRO: OPB
+;       DESCRIPCION: OBTIENE 5 PARAMETROS, A, B Y C LOS CUALES SE MULTIPLICA 2 CON A, SE SUMAN LA MULTIPLICACION DE 3 POR LA RESTA DE A CON C,
+;       Y EL RESULTADO SE GUARDA POR SEPARADO EN DECIMALES Y UNIDADES, EN OPBDEC Y OPBUNI RESPECTIVAMENTE.
+
+	OPB MACRO A,B,C,OPBDEC,OPBUNI
+                MOV AL,A
+                ADD AL,C
+                MUL B
+                MOV OPBDEC,AL
+                MOV AL,2d
+                MUL B
+                ADD AL,OPBDEC
+                AAM 
+                ADD AX,3030h
+                MOV OPBDEC,AH
+                MOV OPBUNI,AL
+        ENDM
+
+;       NOMBRE MACRO: OPC
+;       DESCRIPCION: OBTIENE 5 PARAMETROS, A, B Y C LOS CUALES SE MULTIPLICA A CON B Y SE DIVIDE CON C,
+;       Y EL RESULTADO SE GUARDA POR SEPARADO EN COSCIENTE Y RESIDUO, EN OPCCOS Y OPCRES RESPECTIVAMENTE.
+	
+	OPC MACRO A,B,C,OPCCOS,OPBRES
+                MOV AL,A
+                MUL B
+                DIV C
+                ADD AX,3030h
+                MOV OPCCOS,AH
+                MOV OPCRES,AL
+        ENDM
